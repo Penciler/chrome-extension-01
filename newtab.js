@@ -14,7 +14,12 @@ function getPic(){
 	    console.log(JSON.stringify(myJson));
 	    img.src = myJson.message;
 	    var src = document.getElementById("x");
-	 	src.appendChild(img);
+	 	//src.appendChild(img);
+	 	if(src.childElementCount == 0){
+	 		src.appendChild(img);
+	 	} else {
+	 		src.replaceChild(img, src.childNodes[0]);
+	 	}
 	 	//document.getElementById("x") = img;
 	  });
 }
