@@ -1,18 +1,22 @@
 function getPic(){
 	var img = document.createElement("img");
 
-	var breed = document.getElementById("breed").value;
+	var width = document.getElementById("width").value;
+	var height = document.getElementById("height").value;
 	//console.log('breed:' + breed);
-	var url = "https://dog.ceo/api/breed/" + breed + "/images/random";
+	var url = "https://picsum.photos/" + width + "/" + height;
 
-	//fetch("https://dog.ceo/api/breeds/image/random")
+	//fetch("https://picsum.photos/200/300")
 	fetch(url)
 	  .then(function(response) {
-	    return response.json();
+	  	console.log(response);
+	    //return response.json();
+	    return response;
 	  })
 	  .then(function(myJson) {
 	    console.log(JSON.stringify(myJson));
-	    img.src = myJson.message;
+	    //img.src = myJson.message;
+	    img.src = myJson.url;
 	    var src = document.getElementById("x");
 	 	//src.appendChild(img);
 	 	if(src.childElementCount == 0){
@@ -24,6 +28,13 @@ function getPic(){
 	  });
 }
 
-document.getElementById("breed").addEventListener("change", getPic);
+document.getElementById("width").addEventListener("change", getPic);
 
-document.getElementById("breed").onchange = getPic();
+document.getElementById("width").onchange = getPic();
+
+document.getElementById("height").addEventListener("change", getPic);
+
+document.getElementById("height").onchange = getPic();
+
+//getPic();
+//document.getElementById("refresh").onclick = getPic();
