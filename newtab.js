@@ -12,6 +12,7 @@ function getPic(){
 	  	console.log(response);
 	    //return response.json();
 	    return response;
+	    
 	  })
 	  .then(function(myJson) {
 	    console.log(JSON.stringify(myJson));
@@ -26,15 +27,18 @@ function getPic(){
 	 	}
 	 	//document.getElementById("x") = img;
 	  });
+
+	  return "https://picsum.photos/200/300";
 }
 
-document.getElementById("width").addEventListener("change", getPic);
+window.onload = function(){
+	document.getElementById("width").addEventListener("change", getPic);
 
-document.getElementById("width").onchange = getPic();
+	document.getElementById("width").onchange = getPic();
 
-document.getElementById("height").addEventListener("change", getPic);
+	document.getElementById("height").addEventListener("change", getPic);
 
-document.getElementById("height").onchange = getPic();
-
+	document.getElementById("height").onchange = getPic();
+}
 //getPic();
 //document.getElementById("refresh").onclick = getPic();
