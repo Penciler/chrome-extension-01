@@ -5,17 +5,17 @@ function getPic(){
 	var height = document.getElementById("height").value;
 	//console.log('breed:' + breed);
 	var url = "https://picsum.photos/" + width + "/" + height;
-
+	
 	//fetch("https://picsum.photos/200/300")
-	fetch(url)
+	var imgurl = fetch(url)
 	  .then(function(response) {
-	  	console.log(response);
+	  	//console.log('response =' + response);
 	    //return response.json();
 	    return response;
 	    
 	  })
 	  .then(function(myJson) {
-	    console.log(JSON.stringify(myJson));
+	    console.log('myJson url =' + myJson.url);
 	    //img.src = myJson.message;
 	    img.src = myJson.url;
 	    var src = document.getElementById("x");
@@ -27,18 +27,21 @@ function getPic(){
 	 	}
 	 	//document.getElementById("x") = img;
 	  });
-
-	  return "https://picsum.photos/200/300";
+	  //console.log('outside response =' + response);
 }
 
 window.onload = function(){
-	document.getElementById("width").addEventListener("change", getPic);
+	//document.getElementById("width").addEventListener("change", getPic);
 
-	document.getElementById("width").onchange = getPic();
+	//document.getElementById("width").onchange = getPic();
 
-	document.getElementById("height").addEventListener("change", getPic);
+	//document.getElementById("height").addEventListener("change", getPic);
 
-	document.getElementById("height").onchange = getPic();
+	//document.getElementById("height").onchange = getPic();
+
+	document.getElementById("refresh").onclick = getPic();
+
+	document.getElementById("refresh").addEventListener("click", getPic);
 }
 //getPic();
 //document.getElementById("refresh").onclick = getPic();
