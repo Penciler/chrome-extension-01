@@ -28,13 +28,15 @@ describe('uri test', () => {
       fixture);
   });
 
-  it('uri response should not be empty', done => {
-    var res = getPic();
-    if(res != "https://picsum.photos/200/300") console.error('wrong url!!');
-    //assert.equal(res, "https://picsum.photos/200/300");
-    console.log('response is:' + res);
-    res.should.equal('');
-    done()
+  it('uri response should looks like https://picsum.photos/id/861/200/300', done => {
+    var res;
+    getPic(function(res){
+      var resHead = res.split('id');
+      var resLength = res.split('/');
+      resHead[0].should.equal('https://picsum.photos/') && resLength.length.should.equal(7);
+      done();
+    }
+    );
   })
 
 })

@@ -1,4 +1,4 @@
-function getPic(){
+function getPic(callback){
 	var img = document.createElement("img");
 
 	var width = document.getElementById("width").value;
@@ -7,7 +7,7 @@ function getPic(){
 	var url = "https://picsum.photos/" + width + "/" + height;
 	
 	//fetch("https://picsum.photos/200/300")
-	var imgurl = fetch(url)
+	fetch(url)
 	  .then(function(response) {
 	  	//console.log('response =' + response);
 	    //return response.json();
@@ -15,7 +15,7 @@ function getPic(){
 	    
 	  })
 	  .then(function(myJson) {
-	    console.log('myJson url =' + myJson.url);
+	    //console.log('myJson url =' + myJson.url);
 	    //img.src = myJson.message;
 	    img.src = myJson.url;
 	    var src = document.getElementById("x");
@@ -25,23 +25,15 @@ function getPic(){
 	 	} else {
 	 		src.replaceChild(img, src.childNodes[0]);
 	 	}
-	 	//document.getElementById("x") = img;
+	 	callback(myJson.url);
 	  });
-	  //console.log('outside response =' + response);
+
 }
 
 window.onload = function(){
-	//document.getElementById("width").addEventListener("change", getPic);
 
-	//document.getElementById("width").onchange = getPic();
+	document.getElementById("refresh").onclick = getPic(function(picUrl){console.log('picUrl:' + picUrl)});
 
-	//document.getElementById("height").addEventListener("change", getPic);
-
-	//document.getElementById("height").onchange = getPic();
-
-	document.getElementById("refresh").onclick = getPic();
-
-	document.getElementById("refresh").addEventListener("click", getPic);
+	document.getElementById("refresh").addEventListener("click", getPic(function(picUrl){console.log('picUrl:' + picUrl)}));
 }
-//getPic();
-//document.getElementById("refresh").onclick = getPic();
+
